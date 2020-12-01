@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      #counter {
+        font-size: 50px;
+        color: white;
+      }
+
+      #controlPanel {
+        float: left;
+        padding-top: 30px;
+      }
+
+      .button {
+        background-color: gray;
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin: 90px 40px;
+        cursor: pointer;
+      }
+
+      #traffic-light {
+        height: 550px;
+        width: 200px;
+        float: left;
+        background-color: #333;
+        border-radius: 40px;
+        margin: 30px 0;
+        padding: 20px;
+      }
+
+      .bulb {
+        height: 150px;
+        width: 150px;
+        background-color: #111;
+        border-radius: 50%;
+        margin: 25px auto;
+        transition: background 500ms;
+      }
+
+      #metrics {
+        width: 50%;
+        padding-top: 100px;
+        padding-left: 200px;
+        float: left;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="controlPanel">
+      <!-- <h1 id="stopButton" class="button" onclick="counter();">
+        ¡Quiero Cruzar!
+      </h1>
+      <h1 class="button" id="counterNumber">10</h1> -->
+    </div>
+
+    <div id="traffic-light">
+      <div id="stopLight" class="bulb"></div>
+      <div id="slowLight" class="bulb"></div>
+      <div id="goLight" class="bulb"></div>
+    </div>
+    <!-- <div id="metrics">
+      <table class="table">
+        <thead>
+          <h2>Metrics</h2>
+          <tr>
+            <th scope="col">Pedestrian Crossing</th>
+            <th scope="col">Steps</th>
+            <th scope="col">Meters (M)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="crossing">12</td>
+            <td id="steps">120</td>
+            <td id="meters">12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+
+    <script>
+      function illuminateRed() {
+        secTimes = 5;
+        clearLights();
+        document.getElementById("stopLight").style.backgroundColor = "red";
+
+        interval = setInterval(() => {
+          if (!secTimes--) {
+            clearInterval(interval);
+            illuminateGreen();
+          }
+        }, 1000);
+      }
+
+      function illuminateYellow() {
+        secTimes = 5;
+        clearLights();
+        document.getElementById("slowLight").style.backgroundColor = "yellow";
+
+        interval = setInterval(() => {
+          if (!secTimes--) {
+            clearInterval(interval);
+            illuminateRed();
+          }
+        }, 1000);
+      }
+      function illuminateGreen() {
+        secTimes = 5;
+        clearLights();
+        document.getElementById("goLight").style.backgroundColor = "green";
+
+        interval = setInterval(() => {
+          if (!secTimes--) {
+            clearInterval(interval);
+            illuminateYellow();
+          }
+        }, 1000);
+      }
+
+      function clearLights() {
+        document.getElementById("stopLight").style.backgroundColor = "#F95E5E"; //lightRed
+        document.getElementById("slowLight").style.backgroundColor = "#FFFF99"; //lightYellow
+        document.getElementById("goLight").style.backgroundColor = "#90EE90"; //lightGreen
+      }
+
+      illuminateRed();
+    </script>
+  </body>
+</html>
